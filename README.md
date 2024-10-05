@@ -48,24 +48,23 @@ This is a convinient way for playing around with distributed ledger quickly.
 ```sh
 $ node multiple
 ```
-### API Routes
+## API Routes
+
 Below are the available API routes you can use:
 
-GET /resolve - Resolve any conflicts in the blockchain.
-GET /nodes - Get the list of all nodes in the network.
-POST /transaction - Create a new transaction.
-POST /MiningNode - Add a mining node.
-GET /transactions - Get all transactions in the pool.
-GET /mine - Start the mining process.
-GET /blockchain/last-index - Get the last index of the blockchain.
-GET /blockchain/:idx - Get a specific block by index.
-GET /blockchain - Retrieve the entire blockchain.
-GET /next - Get the next block to be mined.
-POST /broadcastblock - Broadcast a newly mined block to the network.
-GET /valider - Validate the blockchain.
-GET /Getbro - Get broadcasted blocks.
-GET /gas - Get the current gas .
-GET /temp - Get the current temperature (if applicable).
-GET /hum - Get the current humidity (if applicable).
-
-
+- **GET** `/resolve` - Resolve any conflicts in the blockchain.
+- **GET** `/nodes` - Get the list of all nodes in the network.
+- **POST** `/transaction` - Create a new transaction.
+- **POST** `/MiningNode` - Add a mining node.
+- **GET** `/transactions` - Get all transactions in the pool.
+- **GET** `/mine` - Start the mining process.
+- **GET** `/blockchain/last-index` - Get the last index of the blockchain.
+- **GET** `/blockchain/:idx` - Get a specific block by index.
+- **GET** `/blockchain` - Retrieve the entire blockchain.
+- **GET** `/next` - Get the next block to be mined.
+- **POST** `/broadcastblock` - Broadcast a newly mined block to the network.
+- **GET** `/valider` - Validate the blockchain.
+- **GET** `/Getbro` - Get broadcasted blocks.
+- **GET** `/gas` - Get the current gas .
+- **GET** `/temp` - Get the current temperature (if applicable).
+- **GET** `/hum` - Get the current humidity (if applicable).
