@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .block {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            width: 80%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .block h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+        }
+
+        .block p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .transactions {
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1>Blockchain BOX</h1>
+    <div id="blocks-container"></div>
+
+    <script>
+        async function fetchBlocks() {
+            const response = await fetch('http://localhost:4000/blockchain');
+            const blocks = await response.json();
+            const blocksContainer = document.getElementById('blocks-container');
+            blocksContainer.innerHTML = '';
+
+            blocks.forEach(block => {
+                const blockDiv = document.createElement('div');
+                blockDiv.className = 'block';
+                blockDiv.innerHTML = `
+                    <h3>Block #${block.index}</h3>
+                    <p><strong>Hash:</strong> ${block.hash}</p>
+                    <p><strong>Previous Hash:</strong> ${block.previousHash}</p>
+                    <p><strong>Nonce:</strong> ${block.nonce}</p>
+                      <p><strong>timestamp:</strong> ${block.timestamp}</p>
+                    <div class="transactions">
+                        <strong>Transactions:</strong>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${block.transactions.map(transaction => `
+                                    <tr>
+                                         <td>${Object.keys(transaction.data)[0]}</td>
+                                       
+                                        <td>${transaction.timestamp}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+                blocksContainer.appendChild(blockDiv);
+            });
+        }
+
+        fetchBlocks();
+    </script>
+</body>
+
+</html>
